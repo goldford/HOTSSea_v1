@@ -1,0 +1,5 @@
+Figure 4 - evaluation using CTDs for each model for 2016 - 2018 experimental eval period
+Figure 5 - evaluation using CTDs for final HOTSSea v1.02 for 1980 - 2018 period
+Can only be run on unix server with model outputs
+Requires custom python library currently referred to as 'pyap', configured for the server
+Please contact greig.oldford@dfo-mpo.gc.ca or michael.dunphy@dfo-mpo.gc.ca for assistance
