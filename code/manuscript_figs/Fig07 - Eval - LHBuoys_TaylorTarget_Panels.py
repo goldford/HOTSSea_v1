@@ -1,4 +1,5 @@
 # Created by G Oldford Aug 2023
+# last edit March 2024
 # Purpose: Taylor and Target plots of SST and SSS from buoys and lighthouses
 # Inputs: buoy and LH analysis .pickle file exported from the 'pyap' package
 # Process: loop over the model runs we wish to visualize,
@@ -9,9 +10,18 @@
 # Notes / To-dos:
 #   20230821 - two loops are inefficient (on for each of taylor and target).
 #              b/c of opening and re-opening and processing pickles repeatedly
-#
+#   20240320 - using skillmetrics 1.1.8 - newer does not work - but this requires python 3.9
+#            - ideally don't use skillmetrics in future
+#            - numpy 1.21.5, py 3.9.13, matplotlib 3.5.2
+#            - skillmetrics used here was edited - get_target_diagram_options,
+#            overlay_target_diagram_circles, plot_pattern_diagram_markers,
+#            overlay_taylor_diagram_circles, plot_taylor_axes
+
 
 import numpy as np
+# attempt to fix issue with skillmetrics library 1.1.8 and py 3.11 - 2024-03 GO
+
+
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import matplotlib.lines as mlines
@@ -28,7 +38,12 @@ modelruns_info = {  # 'SalishSea1500-RUN203': {'path': 'D:/temp_nemo/RUN203_PLOT
     #                        'SalishSea1500-RUN216': {'path': 'D:/temp_nemo/RUN216/',
     #                                              'colour': 'k',
     #                                             'shortcode': 'RUN216', 'experiment': False},
-    'SalishSea1500-RUN216-altSST': {'path': 'D:/temp_nemo/RUN216_altSST/',
+    # 'SalishSea1500-RUN216-altSST': {'path': 'D:/temp_nemo/RUN216_altSST/',
+    #                                 'colour': 'r', 'colour_face': 'r', 'colour_edge': 'r',
+    #                                 'shortcode': 'RUN216', 'experiment': False}  # ,
+    # path to old PC above
+    # alt SST = z = 1 rather than z = 0
+    'SalishSea1500-RUN216-altSST': {'path': 'C:/Users/Greig/Sync/1. UBC-Laptop/5. PhD Dissertation/2_NEMO_SS1500/pyap_out/RUN216_altSST/',
                                     'colour': 'r', 'colour_face': 'r', 'colour_edge': 'r',
                                     'shortcode': 'RUN216', 'experiment': False}  # ,
     #                      'SalishSea500-201905': {'path': 'D:/temp_nemo/SS500/',
@@ -471,7 +486,8 @@ for var_ts in var_codes:
                                       axismax=axismax,
                                       circles=circles_trg,
                                       circlelinewidth=0.8,
-                                      circlelinespec='0.75--',
+                                      circlelinespec='0.75--', # not compatible?
+                                      #circlelinespec='k--',
                                       markersymbol=marker_dict['marker'],
                                       markercolor=mf_colour,
                                       markerSize=marker_dict['size'],
@@ -585,7 +601,8 @@ for var_ts in var_codes:
                                           axismax=axismax,
                                           circles=circles_trg,
                                           circlelinewidth=0.8,
-                                          circlelinespec='0.75--',
+                                          #circlelinespec='0.75--', # not compatible?
+                                          circlelinespec='k--',
                                           markersymbol=marker_dict['marker'],
                                           markercolor=mf_colour,
                                           markerSize=marker_dict['size'],
@@ -631,4 +648,7 @@ ax_leg.legend(handles = legend_mark_sorted,
                     handletextpad=0.2,
                     fontsize=8)
 plt.tight_layout()
+plt.savefig('../../figs/Fig07.png', dpi=300)
+plt.savefig('../../figs/Fig07.pdf', dpi=300)
 plt.show()
+
