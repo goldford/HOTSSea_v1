@@ -1,5 +1,6 @@
 # Created by G Oldford Aug 2023
 # last edit March 2024
+
 # Purpose: Taylor and Target plots of SST and SSS from buoys and lighthouses
 # Inputs: buoy and LH analysis .pickle file exported from the 'pyap' package
 # Process: loop over the model runs we wish to visualize,
@@ -16,6 +17,7 @@
 #            - skillmetrics used here was edited - get_target_diagram_options,
 #            overlay_target_diagram_circles, plot_pattern_diagram_markers,
 #            overlay_taylor_diagram_circles, plot_taylor_axes
+#            - set to py 3.9 venv before running - projects -> settings etc.
 
 
 import numpy as np
