@@ -1,5 +1,7 @@
 # Created Feb 2024 by G Oldford
 # Purpose: produce plots of model vs obs at Nanoose stn
+# python 3.11.5 - set the interpeter to this (anaconda3 default used here)
+# statsmodels v.0.14, netCDF4 v1.6.2, mannkendall 1.1.1, matplotlib v3.6.3
 
 from trends_test_GO import do_prelim_trend_analysis
 from GO_tools import get_dat, write_mk3pw_data_to_csv
@@ -9,9 +11,11 @@ from datetime import datetime
 import numpy as np
 
 # ==== Paths ====
-meshm_p = '../../data/mesh mask/'
+meshm_p = '..//..//data//mesh mask//'
 meshm_f = 'mesh_mask_20210406.nc'
-dat_p = '../climatol_intermediate_files/'
+dat_p = '..//..//data//eval//nanoose_clima//'
+fig_inter_p = '..//..//figs//intermed//'
+fig_p = '..//..//figs//'
 
 # this does nothing yet except select files, imperfectly
 year_min = 1980
@@ -107,10 +111,11 @@ if remove_nans:
 
 if use_abs:abs_lab = 'absolute'
 else: abs_lab = ''
-write_mk3pw_data_to_csv(mk_3pw_out_obs, 'NanooseObs_1980-2018', 'mk_3pw_out_' + str(depth_min) + 'to' + str(depth_max) + time_inc + '_Nanoose1980-2018' + abs_lab + '.csv')
-write_mk3pw_data_to_csv(mk_3pw_out_obs_full, 'NanooseObs_1970-2018', 'mk_3pw_out_' + str(depth_min) + 'to' + str(depth_max) + time_inc + '_Nanoose1970-2018' + abs_lab + '.csv')
-write_mk3pw_data_to_csv(mk_3pw_out_mod1, 'HOTSS_v1.01', 'mk_3pw_out_' + str(depth_min) + 'to' + str(depth_max) + time_inc + '_HOTSSv101' + abs_lab + '.csv')
-write_mk3pw_data_to_csv(mk_3pw_out_mod2, 'HOTSS_v1.02', 'mk_3pw_out_' + str(depth_min) + 'to' + str(depth_max) + time_inc + '_HOTSSv102' + abs_lab + '.csv')
+pathout1 = 'interm_output//'
+write_mk3pw_data_to_csv(mk_3pw_out_obs, pathout1 + 'NanooseObs_1980-2018', 'mk_3pw_out_' + str(depth_min) + 'to' + str(depth_max) + time_inc + '_Nanoose1980-2018' + abs_lab + '.csv')
+write_mk3pw_data_to_csv(mk_3pw_out_obs_full, pathout1 + 'NanooseObs_1970-2018', 'mk_3pw_out_' + str(depth_min) + 'to' + str(depth_max) + time_inc + '_Nanoose1970-2018' + abs_lab + '.csv')
+write_mk3pw_data_to_csv(mk_3pw_out_mod1, pathout1 + 'HOTSS_v1.01', 'mk_3pw_out_' + str(depth_min) + 'to' + str(depth_max) + time_inc + '_HOTSSv101' + abs_lab + '.csv')
+write_mk3pw_data_to_csv(mk_3pw_out_mod2, pathout1 + 'HOTSS_v1.02', 'mk_3pw_out_' + str(depth_min) + 'to' + str(depth_max) + time_inc + '_HOTSSv102' + abs_lab + '.csv')
 
 # plot trends by season
 if time_inc == 'seasonal':
@@ -193,25 +198,25 @@ if time_inc == 'seasonal':
     ax.invert_yaxis()
     if use_abs == True: abs_lab='_abs'
     else: abs_lab = ''
-    plt.savefig('modobsnanoose_' + str(depth_min) + '-' + str(depth_max) + '_' + abs_lab + '_' + time_inc + '.png', dpi=300)
+    plt.savefig(fig_inter_p + 'modobsnanoose_' + str(depth_min) + '-' + str(depth_max) + '_' + abs_lab + '_' + time_inc + '.png', dpi=300)
     plt.legend()
     plt.show()
 
-fig, ax = plt.subplots()
-ax.fill_between(d_pt_o, d_o, d_m1, color='grey', label='', alpha=0.7, zorder=0)
-#ax.scatter(dat_pytime, dat_davg, label='Obs', s=1, color='r', marker='o')
-#ax.scatter(dat_pytime, mod_davg, label='Mod', s=1, color='g', marker='x')
-ax.plot(d_pt_o, d_o, label='Obs', color='k', linestyle='-', linewidth=1)
-ax.plot(d_pt_m1, d_m1, label='Mod', color='r', linestyle='--', linewidth=1)
-ax.xaxis.set_major_locator(mdates.YearLocator())
-ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-ax.set_ylim(-1,1)
-
-plt.title("HOTSS v1.01 Modelled vs. Observed Temperature Anomalies at Nanoose Stn, " + str(depth_min) + " to " + str(depth_max) + " m")
-plt.xlabel('Time')
-plt.ylabel('Anomaly (deg C)')
-plt.legend()
-plt.show()
+# fig, ax = plt.subplots()
+# ax.fill_between(d_pt_o, d_o, d_m1, color='grey', label='', alpha=0.7, zorder=0)
+# #ax.scatter(dat_pytime, dat_davg, label='Obs', s=1, color='r', marker='o')
+# #ax.scatter(dat_pytime, mod_davg, label='Mod', s=1, color='g', marker='x')
+# ax.plot(d_pt_o, d_o, label='Obs', color='k', linestyle='-', linewidth=1)
+# ax.plot(d_pt_m1, d_m1, label='Mod', color='r', linestyle='--', linewidth=1)
+# ax.xaxis.set_major_locator(mdates.YearLocator())
+# ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+# ax.set_ylim(-1,1)
+#
+# plt.title("HOTSS v1.01 Modelled vs. Observed Temperature Anomalies at Nanoose Stn, " + str(depth_min) + " to " + str(depth_max) + " m")
+# plt.xlabel('Time')
+# plt.ylabel('Anomaly (deg C)')
+# plt.legend()
+# plt.show()
 
 fig, ax = plt.subplots()
 ax.fill_between(d_pt_o, d_o, d_m2, color='grey', label='', alpha=0.7, zorder=0)
@@ -224,7 +229,7 @@ ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
 ax.set_ylim(-1,1)
 plt.title("HOTSS v1.02 Modelled vs. Observed Temperature Anomalies at Nanoose Stn, " + str(depth_min) + " to " + str(depth_max) + " m")
 plt.xlabel('Time')
-plt.ylabel('Anomaly (deg C)')
+plt.ylabel('Temperature Anomaly (°C)')
 plt.legend()
 plt.show()
 
@@ -278,80 +283,9 @@ ax.grid(which='major', color='lightgrey')
 ax.axhline(y=0, color='black', linestyle='--', linewidth='0.5')
 
 plt.title("HOTSSea v1.02 Modelled vs. Observed Temperature Anomalies at Nanoose Stn, " + str(depth_min) + " to " + str(depth_max) + " m")
-plt.ylabel('Anomaly (deg C)')
+plt.ylabel('Temperature Anomaly (°C)')
 plt.legend()
-plt.savefig('modvobs_nanoose_' + time_inc + '.png', dpi=300)
-plt.savefig('modvobs_nanoose_' + time_inc + '.eps', dpi=300)
-plt.show()
-
-
-# seasonal
-seas = 2
-fig, ax = plt.subplots()
-#ax.fill_between(dat_pytime_seas_obs[seas], dat_seas_obs[seas], dat_seas_mod2[seas], color='grey', label='', alpha=0.7, zorder=0)
-#ax.scatter(dat_pytime, dat_davg, label='Obs', s=1, color='r', marker='o')
-#ax.scatter(dat_pytime, mod_davg, label='Mod', s=1, color='g', marker='x')
-ax.plot(d_pt_se_o[seas], d_se_o[seas], label='Nanoose Temp. (4.5 - 400 m)', color='r', linestyle='-', linewidth=3)
-# Filter indices of dates before the target date
-target_date = datetime(1980, 12, 15)
-filtered_indices = [index for index, date in enumerate(d_pt_se_o_full[seas]) if date < target_date]
-ax.plot(d_pt_se_o_full[seas][filtered_indices], d_se_o_full[seas][filtered_indices], label='', color='r', linestyle='-', linewidth=3)
-#ax.plot(dat_pytime_seas_mod2[seas], dat_seas_mod2[seas], label='Mod', color='g', linestyle='--', linewidth=1)
-ax.xaxis.set_major_locator(mdates.YearLocator())
-ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-ax.set_ylim(-1.2,1)
-ax.set_xlabel('Time')
-ax.set_ylabel('Anomaly (deg C)')
-
-
-# plot mortalities
-
-# path to salmon survival
-import pandas as pd
-import xarray as xr
-import os
-import datetime as dt
-import scipy.stats as sp
-# mort_p = 'C:/Users/Greig/Sync/6. SSMSP Model/Model Greig/Data/1. Salmon/All Species Survival Exploitation/'
-# mort_f = 'chinook_M_EWE_TS Jan 13.csv'
-# mort_df = pd.read_csv(os.path.join(mort_p,mort_f), header=[0, 1, 2])
-# group_names = mort_df.columns.levels[0][:-1]
-mort_p = 'C:/Users/Greig/Sync/6. SSMSP Model/Model Greig/Data/1. Salmon/Chinook Survival Freshwater 2022/MODIFIED'
-mort_f = 'salish_M_ocntp_sog_1971-2017.csv'
-mort_df = pd.read_csv(os.path.join(mort_p,mort_f), header=[0])
-
-group_names = mort_df.columns[1:]
-#mort_dt = mort_df.iloc[:, 0].apply(lambda x: datetime.strptime(str(x), '%Y'))
-mort_dt = mort_df.iloc[:, 0]
-mort_df_np = np.asarray(mort_dt.values)
-mort_pydt = [dt.datetime(x,6,15) for x in mort_df_np]
-mort_pydt_np = np.asarray(mort_pydt)
-
-mort_mean = np.nanmean(mort_df.iloc[:,1:], axis=1)
-mort_std = np.nanstd(mort_df.iloc[:,1:], axis=1)
-# Calculate the z-score based on the confidence level
-mort_z = np.abs(np.round(sp.norm.ppf((1 + 0.95) / 2), 2)) # from scipy.stats import norm
-# Calculate the upper confidence limit
-mort_ucl = mort_mean + mort_z * (mort_std / np.sqrt(len(mort_mean)))
-mort_lcl = mort_mean - mort_z * (mort_std / np.sqrt(len(mort_mean)))
-# take mean of all mort data
-mort_mean = ((mort_mean / 4) - 1)
-
-# since twinx not working, transform the mort data to same -1 to 1 scale
-# ax2 = ax.twinx()
-# ax.plot(mort_pydt_np, mort_mean, label='SoG Chinook Mort. (Ocean Type)', color='b', linewidth=3)
-#
-# for grp_name in group_names:
-#     mort_dat = mort_df[grp_name].values
-#     mort_dat = ((mort_dat / 4) - 1)
-#     ax.plot(mort_pydt_np, mort_dat, label='', color='grey', linewidth=1)
-# ax.legend()
-# ax2.set_ylim(-1,1)
-# ax2.set_ylabel('Mort')
-# ax2.legend()
-# ax2.xaxis.set_major_locator(mdates.YearLocator())
-# ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-
-# plt.title("Season " + str(seas) + ": HOTSS v1.02 Modelled vs. Observed Temperature Anomalies at Nanoose Stn, " + str(depth_min) + " to " + str(depth_max) + " m")
-plt.savefig('ChinookMortJustTempsForPPT.png', dpi=300)
+plt.savefig(fig_p + 'Fig09_' + time_inc + '.png', dpi=300)
+plt.savefig(fig_p + 'Fig09_' + time_inc + '.eps', dpi=300)
+plt.savefig(fig_p + 'Fig09_' + time_inc + '.pdf', dpi=300)
 plt.show()

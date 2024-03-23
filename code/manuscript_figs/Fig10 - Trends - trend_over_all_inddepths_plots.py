@@ -1,5 +1,7 @@
 # Created Feb 9 2024 by G Oldford
 # Purpose: seasonal and nonseasonal trend estimation over all depth levs
+# python 3.11.5 - set the interpeter to this (anaconda3 default used here)
+# statsmodels v.0.14, netCDF4 v1.6.2, mannkendall 1.1.1, matplotlib v3.6.3
 
 from GO_tools import get_dat, do_ss_seasons
 from statsmodels.tsa.stattools import acf
@@ -10,9 +12,9 @@ import matplotlib.pyplot as plt
 import netCDF4 as nc
 
 # ==== Paths ====
-meshm_p = '../../data/mesh mask/'
+meshm_p = '..//..//data//mesh mask//'
 meshm_f = 'mesh_mask_20210406.nc'
-dat_p = '../climatol_intermediate_files/'
+dat_p = '..//..//data//eval//nanoose_clima//'
 
 # to-do: this does not currently do much - just selects files below
 year_min = 1980
@@ -441,11 +443,14 @@ for i, season_name in enumerate(season_names):
 plt.tight_layout()
 
 # plt.savefig('trend_alldep_nanoose_modobs_wletters.png', dpi=300)
-plt.savefig('trend_alldep_nanoose_obs_twoperiods_' +
+plt.savefig('..//..//figs//Fig10_' +
             str(year_min) + '-' + str(year_max) + '.png',
             dpi=300)
-plt.savefig('trend_alldep_nanoose_obs_twoperiods_' +
-            str(year_min) + '-' + str(year_max) + '.eps',
+# plt.savefig('..//..//figs//Fig10_' +
+#             str(year_min) + '-' + str(year_max) + '.eps',
+#             dpi=300)
+plt.savefig('..//..//figs//Fig10_' +
+            str(year_min) + '-' + str(year_max) + '.pdf',
             dpi=300)
 plt.show()
 
