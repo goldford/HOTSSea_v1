@@ -1,3 +1,7 @@
+Figs 4 and 5 generated using scripts on unix server hosting model outputs
+Requires custom python library currently referred to as 'pyap', configured for the server
+Please contact greig.oldford@dfo-mpo.gc.ca or michael.dunphy@dfo-mpo.gc.ca for assistance
+
 Figure 4 - evaluation using CTDs for each model for 2016 - 2018 experimental eval period
 	 - must be run on server
 	 - to run (unix): 
@@ -8,7 +12,6 @@ Figure 4 - evaluation using CTDs for each model for 2016 - 2018 experimental eva
 	 - 	edit /project/6006412/goldford/gitlab_pyap_fork20230331/analysispkg/pkg_plot_cast.py
 	 - 	python gitlab_pyap_fork20230331/bin/plots.py gitlab_pyap_fork20230331/config/mid002/SS1500/compare_several_GO.yaml -i CTD -j 3
 	 -  	output to: project/6006412/goldford/ANALYSIS/SalishSea1500-ALLRUNS_test/CTD/hindcast/ProfilePDF_comparisons
+
+
 Figure 5 - evaluation using CTDs for final HOTSSea v1.02 for 1980 - 2018 period
-Can only be run on unix server with model outputs
-Requires custom python library currently referred to as 'pyap', configured for the server
-Please contact greig.oldford@dfo-mpo.gc.ca or michael.dunphy@dfo-mpo.gc.ca for assistance
