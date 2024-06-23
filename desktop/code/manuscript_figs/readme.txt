@@ -1,4 +1,5 @@
 G Oldford, March 2024
+g.oldford@dfo-mpo.gc.ca; greig.oldford@gmail.com
 
 Python notebooks (Python 3.9x) have .ipynb extension
 Any files with .ksh extension are meant to be run on unix server
