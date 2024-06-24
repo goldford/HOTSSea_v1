@@ -4,8 +4,8 @@ Created March 2024 by G Oldford
 
 repo structure
 
-desktop
-[desktop code and resources for analysis and plots]
+desktop  
+[desktop code and resources for analysis and plots]  
 |
 |--> code
 |   |
