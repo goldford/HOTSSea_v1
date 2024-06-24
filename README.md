@@ -8,7 +8,7 @@ desktop
 [desktop code and resources for analysis and plots]  
 |  
 |--> code  
-|   |  
+| |  
 |   |--> manuscript_figs  
 |   |	[desktop PC code for manuscript plots]  
 |   |  
