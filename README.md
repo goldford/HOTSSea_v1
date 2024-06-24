@@ -3,12 +3,12 @@ Created March 2024 by G Oldford
 [![DOI](https://zenodo.org/badge/767739309.svg)](https://zenodo.org/doi/10.5281/zenodo.10846148)
 
 repo structure
-
+<code>
 desktop  
 [desktop code and resources for analysis and plots]  
 |  
 |--> code  
-| |  
+|   |  
 |   |--> manuscript_figs  
 |   |	[desktop PC code for manuscript plots]  
 |   |  
@@ -17,8 +17,8 @@ desktop
 |  
 |--> data  
 |   |  
-|	|--> bathymetry  
-|	|  
+|   |--> bathymetry  
+|   |  
 |	|--> eval  
 |	|  
 |	|--> grid  
@@ -59,4 +59,4 @@ serverside
 |  
 |-->ANALYSIS  
 	[outputs from running pypkg scripts, mainly model-obs stats]  
-	
+</code>
