@@ -9,11 +9,11 @@ desktop
 |  
 |--> code  
 |   |  
-|	|--> manuscript_figs  
-|	|	[desktop PC code for manuscript plots]  
-|	|  
-|	|--> data_prep  
-|	|	[notebooks etc for prepping data]  
+|   |--> manuscript_figs  
+|   |	[desktop PC code for manuscript plots]  
+|   |  
+|   |--> data_prep  
+|   |	[notebooks etc for prepping data]  
 |  
 |--> data  
 |   |  
